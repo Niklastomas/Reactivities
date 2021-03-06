@@ -15,6 +15,7 @@ interface Props {
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
+  submitting: boolean;
 }
 
 const ActivityDashboard: FC<Props> = ({
@@ -27,6 +28,7 @@ const ActivityDashboard: FC<Props> = ({
   closeForm,
   createOrEdit,
   deleteActivity,
+  submitting,
 }) => {
   return (
     <Grid>
@@ -35,6 +37,7 @@ const ActivityDashboard: FC<Props> = ({
           activities={activities}
           selectActivity={selectActivity}
           deleteActivity={deleteActivity}
+          submitting={submitting}
         />
       </Grid.Column>
       <Grid.Column width='6'>
@@ -50,6 +53,7 @@ const ActivityDashboard: FC<Props> = ({
             closeForm={closeForm}
             activity={selectedActivity}
             createOrEdit={(activity) => createOrEdit(activity)}
+            submitting={submitting}
           />
         )}
       </Grid.Column>
