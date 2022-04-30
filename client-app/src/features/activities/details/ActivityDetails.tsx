@@ -1,19 +1,13 @@
-import React, { FC } from 'react';
-import { Button, Card, Icon, Image } from 'semantic-ui-react';
-import { Activity } from '../../../app/models/activity';
+import { observer } from "mobx-react-lite";
+import React from "react";
+import { Button, Card, Image } from "semantic-ui-react";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-  activity: Activity;
-  cancelSelectActivity: () => void;
-  openForm: (id: string) => void;
-}
+const ActivityDetails = () => {
+  const { activityStore } = useStore();
+  const { selectedActivity: activity, openForm, cancelSelectedActivity } = activityStore;
 
-const ActivityDetails: FC<Props> = ({
-  activity,
-  cancelSelectActivity,
-  openForm,
-}) => {
-  console.log(activity);
+  if (!activity) return null;
 
   return (
     <Card fluid>
@@ -26,18 +20,18 @@ const ActivityDetails: FC<Props> = ({
         <Card.Description>{activity.description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button.Group widths='2'>
+        <Button.Group widths="2">
           <Button
             basic
-            color='blue'
-            content='Edit'
+            color="blue"
+            content="Edit"
             onClick={() => openForm(activity.id)}
           />
           <Button
             basic
-            color='grey'
-            content='Cancel'
-            onClick={cancelSelectActivity}
+            color="grey"
+            content="Cancel"
+            onClick={cancelSelectedActivity}
           />
         </Button.Group>
       </Card.Content>
@@ -45,4 +39,4 @@ const ActivityDetails: FC<Props> = ({
   );
 };
 
-export default ActivityDetails;
+export default observer(ActivityDetails);
