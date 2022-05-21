@@ -9,6 +9,7 @@ import ActivityForm from "../../features/activities/form/ActivityForm";
 import HomePage from "../../features/home/HomePage";
 import ActivityDetails from "../../features/activities/details/ActivityDetails";
 
+
 function App() {
   return (
     <>
